@@ -1,0 +1,1 @@
+Mysterious entities come lurking aound the house of Iruma. You, as the player, have to gather evidence in order to prove that something happened to the placec a long time ago. Try to survive as long as you can in this simple game
