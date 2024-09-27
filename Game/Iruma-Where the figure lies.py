@@ -9,6 +9,8 @@ pygame.display.set_caption("Iruma - Where the figures lie")
 SCREEN_WIDTH = 1200
 SCREEN_HEIGHT = 620
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+#clock object to control frame rate
+clock = pygame.time.Clock()
 
 # Define background color
 BG = (0, 0, 0)
@@ -43,7 +45,7 @@ class Character:
         old_rect = self.rect.copy()
         
         # Handle movement input
-        move_speed = 1  # Set a smaller move speed for slower movement
+        move_speed = 5  # Set a smaller move speed for slower movement
         
         # Handle movement input
         if (keys[pygame.K_d] or keys[pygame.K_RIGHT]) and self.rect.right < SCREEN_WIDTH:
@@ -81,27 +83,29 @@ character = Character()
 
 # Define walls to create a maze-like structure
 walls = [
-    # Define the maze structure using rectangular walls
-    pygame.Rect(0, 0, SCREEN_WIDTH, 20),  # Top wall
-    pygame.Rect(0, 0, 20, SCREEN_HEIGHT),  # Left wall
-    pygame.Rect(SCREEN_WIDTH - 20, 0, 20, SCREEN_HEIGHT),  # Right wall
-    pygame.Rect(0, SCREEN_HEIGHT - 20, SCREEN_WIDTH, 20),  # Bottom wall
-    pygame.Rect(100, 100, 200, 20),  # Wall 1
-    pygame.Rect(100, 150, 20, 100),  # Wall 2
-    pygame.Rect(200, 150, 100, 20),  # Wall 3
-    pygame.Rect(300, 100, 20, 100),  # Wall 4
-    pygame.Rect(400, 150, 20, 100),  # Wall 5
-    pygame.Rect(500, 50, 100, 20),  # Wall 6
-    pygame.Rect(500, 100, 20, 100),  # Wall 7
-    pygame.Rect(600, 100, 100, 20),  # Wall 8
-    pygame.Rect(700, 150, 20, 100),  # Wall 9
-    pygame.Rect(800, 100, 20, 100),  # Wall 10
-    pygame.Rect(600, 300, 200, 20),  # Wall 11
-    pygame.Rect(600, 300, 20, 200),  # Wall 12
-    pygame.Rect(800, 300, 20, 200),  # Wall 13
-    pygame.Rect(400, 400, 200, 20),  # Wall 14
-    pygame.Rect(400, 400, 20, 200),  # Wall 15
-    pygame.Rect(600, 400, 20, 200),  # Wall 16
+    # Define the maze structure using rectangular walls (x, y, width, height)
+    pygame.Rect(0, 0, SCREEN_WIDTH, 20),  
+    pygame.Rect(0, 0, 20, SCREEN_HEIGHT),  
+    pygame.Rect(SCREEN_WIDTH - 20, 0, 20, SCREEN_HEIGHT),  
+    pygame.Rect(0, SCREEN_HEIGHT - 20, SCREEN_WIDTH, 20),  
+    pygame.Rect(100, 150, 20, 100),  
+    pygame.Rect(200, 150, 100, 20),
+    pygame.Rect(300, 100, 7, 100),  
+    pygame.Rect(400, 150, 20, 100), 
+    pygame.Rect(500, 50, 100, 20),  
+    pygame.Rect(500, 100, 20, 100), 
+    pygame.Rect(600, 100, 100, 20), 
+    pygame.Rect(700, 150, 20, 100),
+    pygame.Rect(800, 100, 20, 100),  
+    pygame.Rect(600, 300, 200, 20),  
+    pygame.Rect(600, 300, 20, 200),  
+    pygame.Rect(800, 300, 20, 200),  
+    pygame.Rect(400, 400, 200, 20), 
+    pygame.Rect(600, 400, 20, 200),
+    pygame.Rect(400, 500, 20, 200),
+    pygame.Rect(900, 280,  200, 20),
+    pygame.Rect(900, 280,  20, 200),
+    pygame.Rect(1000, 280,  20, 200),
 ]
 
 # Game loop
@@ -121,7 +125,7 @@ while run:
 
     # Draw the walls
     for wall in walls:
-        pygame.draw.rect(screen, (255, 0, 0), wall)  # Draw red walls
+        pygame.draw.rect(screen, (50, 50, 50), wall)
     
     # Event handling loop
     for event in pygame.event.get():
@@ -130,5 +134,6 @@ while run:
     
     # Update the display
     pygame.display.update()
+    clock.tick(60)
 
 pygame.quit()
